@@ -354,8 +354,6 @@ void MainWindow::on_RefreshButton_released()
 void MainWindow::SerialDataAvailable()
 {
     while(this->ComPort->bytesAvailable()){
-        char Data[1];
-        this->ComPort->read(Data, 1);
-        qDebug() << static_cast<int>(Data[0]);
+        this->MessageHandler->AddBytesToBuffer(this->ComPort->read(1));
     }
 }
